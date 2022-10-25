@@ -52,8 +52,8 @@ jobs:
       - image: circleci/node:10.16.3
     steps:
       - checkout
-      - write_to_file:
-          name:  write_txt
+      - run:
+          name: "write to file"
           command: 'echo "hello world" > output.txt'
       - persist_to_workspace:
          root: /tmp/workspace
@@ -66,7 +66,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: /tmp/workspace
-      - cat_output:
+      - run:
           name: cat_output
           command: 'cat ./output.txt'
 
