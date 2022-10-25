@@ -5,6 +5,13 @@ workflows:
   build:
     jobs:
       - build
+      - save_hello_world_output:
+          requires:
+            - "build"
+      - retrieve_output:
+          requires:
+            - "save_hello_world_output"
+
 
 jobs:
   build:
@@ -60,3 +67,5 @@ jobs:
       - cat_output:
           name: cat output.txt
           command: 'cat ./output.txt'
+
+
