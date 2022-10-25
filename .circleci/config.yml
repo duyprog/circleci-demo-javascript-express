@@ -67,7 +67,7 @@ jobs:
       - attach_workspace:
           at: /tmp/workspace
       - cat_output:
-          name: cat output.txt
+          name: cat_output
           command: 'cat ./output.txt'
 
 
