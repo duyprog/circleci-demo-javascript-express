@@ -53,7 +53,7 @@ jobs:
     steps:
       - checkout
       - write_to_file:
-          name:  write in to txt
+          name:  write_txt
           command: 'echo "hello world" > output.txt'
       - persist_to_workspace:
          root: /tmp/workspace
