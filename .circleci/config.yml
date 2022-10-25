@@ -52,9 +52,10 @@ jobs:
       - image: circleci/node:10.16.3
     steps:
       - checkout
+      - run: mkdir -p /tmp/workspace
       - run:
           name: "write to file"
-          command: 'echo "hello world" > output.txt'
+          command: 'echo "hello world" > /tmp/workspace/output.txt'
       - persist_to_workspace:
          root: /tmp/workspace
          paths:
