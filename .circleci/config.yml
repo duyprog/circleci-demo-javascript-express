@@ -1,5 +1,23 @@
 version: 2.1
 
+commands:
+  sayhello:
+    description: "A very simple command for demonstration purposes"
+    parameters:
+      to:
+        type: string
+        default: "Hello World"
+
+    steps:
+      - run: echo << parameters.to >>
+  print_pipeline_id:
+    description: "Command is used to print pipeline id"
+    parameters:
+      pipeline_id:
+        type: string
+        default: $CIRCLE_WORKFLOW_ID
+    steps:
+      - run: echo << parameters.pipeline_id >>
 workflows:
   version: 2
   build:
@@ -11,6 +29,9 @@ workflows:
       - retrieve_output:
           requires:
             - "save_hello_world_output"
+      - using_command:
+          requires:
+            - "retrieve_output"
 
 
 jobs:
@@ -69,5 +90,11 @@ jobs:
       - run:
           name: cat_output
           command: 'cat ~/output.txt'
+  using_command:
+    docker:
+      - image: circleci/node:10.16.3
+    steps:
+      - say_hello:
+          to: "Duy Pham"
 
 
