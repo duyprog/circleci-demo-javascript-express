@@ -94,7 +94,7 @@ jobs:
     docker:
       - image: circleci/node:10.16.3
     steps:
-      - say_hello:
+      - sayhello:
           to: "Duy Pham"
 
 
